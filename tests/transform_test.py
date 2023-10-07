@@ -7,7 +7,8 @@ from src.transform import snake_case
     'input, expected',
     [
         ('pascalCase', 'pascal_case'),
-        ('CamelCase', 'camelcase'),
+        ('CamelCase', 'camel_case'),
+        ('skewer-case', 'skewer_case'),
         ('ICAOCode', 'icao_code'),
         ('error.message', 'error_message'),
     ],
