@@ -25,6 +25,11 @@ format = """
 isort .
 blue .
 """
+test = "pytest -v"
+run = """
+python3 src/main.py
+"""
+doc = "mkdocs serve"
 
 [build-system]
 requires = ["poetry-core"]
