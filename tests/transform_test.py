@@ -8,6 +8,7 @@ from src.transform import snake_case
     [
         ('pascalCase', 'pascal_case'),
         ('CamelCase', 'camel_case'),
+        ('skewer-case', 'skewer_case'),
         ('ICAOCode', 'icao_code'),
         ('error.message', 'error_message'),
     ],
