@@ -30,7 +30,7 @@ isort .
 blue .
 """
 test = "pytest tests/transform_test.py -v"
-run = """
+run_staging = """
 python main.py
 """
 doc = "mkdocs serve"
