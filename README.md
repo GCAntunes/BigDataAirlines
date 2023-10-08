@@ -37,6 +37,12 @@ poetry env use 3.10
 export API_KEY=SUA_CHAVE_DO_RAPID_API
 ```
 
+5. Instale as dependências necessárias:
+
+```bash
+poetry install
+```
+
 5. Ative o ambiente virtual:
 
 ```bash
