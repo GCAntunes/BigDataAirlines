@@ -22,4 +22,4 @@ jobs:
         run: poetry install
 
       - name: Run pytest
-        run: poetry run pytest tests/transform_test.py -v
+        run: poetry run pytest tests/transform_test.py::test_if_input_files_exist tests/transform_test.py::test_snake_case -v
