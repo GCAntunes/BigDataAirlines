@@ -4,7 +4,7 @@ import os
 import pytest
 import requests
 
-from src.transform import snake_case
+from src.staging.transform import snake_case
 
 param_list = [
     ('data/AIR_CIA/ANAC_*.csv'),
