@@ -31,7 +31,7 @@ blue .
 """
 test = "pytest tests/transform_test.py -v"
 run_staging = """
-python src/staging/main.py
+python src/staging/pipeline_staging.py
 """
 doc = "mkdocs serve"
 output_test = 'pytest tests/output_test.py -v'
