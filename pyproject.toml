@@ -35,6 +35,7 @@ python main.py
 """
 doc = "mkdocs serve"
 output_test = 'pytest tests/output_test.py -v'
+dashboard = 'streamlit run src/dashboard.py &'
 
 [build-system]
 requires = ["poetry-core"]
