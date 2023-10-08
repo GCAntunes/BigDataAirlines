@@ -1,5 +1,10 @@
+import asyncio
+import io
+import os
 import re
 
+import aiohttp
+import pandas as pd
 import unidecode
 
 
@@ -17,6 +22,30 @@ def snake_case(column: str) -> str:
             ).split()
         ).lower()
     )
+
+
+async def create_aero_df(client, code: str) -> pd.DataFrame:
+    url = 'https://airport-info.p.rapidapi.com/airport'
+    headers = {
+        'X-RapidAPI-Key': os.getenv('API_KEY'),
+        'X-RapidAPI-Host': os.getenv('API_HOST'),
+    }
+    params = {'icao': code}
+    async with client.get(url, headers=headers, params=params) as response:
+        return pd.json_normalize(await response.json())
+
+
+async def get_all_dfs_async(icao_code: list) -> list:
+    async with aiohttp.ClientSession() as client:
+        futures = [create_aero_df(client, code) for code in icao_code]
+        return await asyncio.gather(*futures)
+
+
+def concat_lst_df(icao_code):
+    lst_dfs = asyncio.get_event_loop().run_until_complete(
+        get_all_dfs_async(icao_code)
+    )
+    return pd.concat(lst_dfs)
 
 
 if __name__ == '__main__':
