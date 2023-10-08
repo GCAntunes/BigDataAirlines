@@ -8,6 +8,8 @@ Esse repositório foi feito para um estudo pontual de ETL, utilizando dados de a
 
 Esse projeto foi desenvolvido pensando no ambiente Linux, utilizando Poetry para gerenciamento de dependências eo Pyenv para gerenciamento da versão do Python.
 
+É utilizado uma API para consultar os dados dos aeródromos. Para utilizar a API é necessário realizar um cadastro no [Rapid API](https://rapidapi.com/) e recuperar sua chave de API, que será utilizada no passo 4. Você pode seguir esse [tutorial](https://docs.rapidapi.com/docs/keys-and-key-rotation) para recuperar sua chave
+
 ### Instalação e Configuração
 
 1. Clone o repositório
@@ -16,7 +18,7 @@ git clone https://github.com/GCAntunes/BigDataAirlines.git
 cd BigDataAirlines
 ```
 
-2. Configure a versão correta do Python com `pyenv`:
+2. Configure a versão do Python com `pyenv`:
 
 ```bash
 pyenv install 3.10
@@ -29,28 +31,50 @@ pyenv local 3.10
 poetry env use 3.10
 ```
 
-4. Ative o ambiente virtual:
+4. Configure a varíavel de ambiente para utilizar a API:
+
+```bash
+export API_KEY=SUA_CHAVE_DO_RAPID_API
+```
+
+5. Ative o ambiente virtual:
 
 ```bash
 poetry shell
 ```
 
-5. Execute o seguinte comando para realizar os testes para garantir o funcionamento da pipeline:
+6. Realize os testes para garantir o funcionamento da pipeline:
 
 ```bash
 task test
 ```
 
-6. Execute o seguinte comando para ver a documentação do projeto:
+7. Execute o seguinte comando para ver a documentação do projeto:
 
 ```bash
 task doc
 ```
 
-7. Execute o seguinte comando para executar a pipeline:
+8. Execute a pipeline de staging:
 
 ```bash
-task run
+task run_staging
 ```
 
-8. Verifique na pasta data/output se o arquivo foi gerado corretamente.
+9. Verifique se o arquivo foi gerado corretamente:
+
+```bash
+task output_test
+```
+
+10. Execute a pipeline analítica:
+
+```bash
+task run_analytic
+```
+
+11. Veja os resultados em um dashboard:
+
+```bash
+task dashboard
+```
