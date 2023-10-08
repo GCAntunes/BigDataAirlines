@@ -11,4 +11,4 @@ df_vra = pd.read_parquet('output/VRA/vra_202310.snappy.parquet')
 
 st.dataframe(df_air_cia)
 st.dataframe(df_aerodromos)
-st.dataframe(df_vra)
+#st.dataframe(df_vra)
