@@ -28,7 +28,7 @@ async def create_aero_df(client, code: str) -> pd.DataFrame:
     url = 'https://airport-info.p.rapidapi.com/airport'
     headers = {
         'X-RapidAPI-Key': os.getenv('API_KEY'),
-        'X-RapidAPI-Host': os.getenv('API_HOST'),
+        'X-RapidAPI-Host': 'airport-info.p.rapidapi.com',
     }
     params = {'icao': code}
     async with client.get(url, headers=headers, params=params) as response:
