@@ -1,10 +1,9 @@
 import asyncio
 
 import pandas as pd
-
-from src.extract import extract_air_csv, extract_vra_json
-from src.load import df_to_parquet
-from src.transform import concat_lst_df, get_all_dfs_async, snake_case
+from extract import extract_air_csv, extract_vra_json
+from load import df_to_parquet
+from transform import concat_lst_df, get_all_dfs_async, snake_case
 
 if __name__ == '__main__':
     df_vra = extract_vra_json('./data/VRA/*.json')
