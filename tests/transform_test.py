@@ -18,7 +18,7 @@ def test_api_key_env():
     assert api_key != None
     assert type(api_key) == str
   
-def test_integration_aiport_api():
+def test_integration_airport_api():
     url = 'https://airport-info.p.rapidapi.com/airport'
     params = params = {'icao': '3166'}
     headers = {
