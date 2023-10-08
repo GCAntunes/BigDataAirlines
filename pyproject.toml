@@ -29,11 +29,12 @@ format = """
 isort .
 blue .
 """
-test = "pytest -v"
+test = "pytest tests/transform_test.py -v"
 run = """
 python main.py
 """
 doc = "mkdocs serve"
+output_test = 'pytest tests/output_test.py -v'
 
 [build-system]
 requires = ["poetry-core"]
