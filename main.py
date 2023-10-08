@@ -16,6 +16,7 @@ if __name__ == '__main__':
     df_vra = df_vra.rename(
         columns={column: snake_case(column) for column in df_vra.columns}
     )
+    df_vra = df_vra.astype({'codigo_autorizacao': 'string'})
 
     icao_code = set(
         list(df_vra['icao_aerodromo_origem'].unique())
@@ -30,8 +31,12 @@ if __name__ == '__main__':
     ).loc[pd.isnull(df_aerodromos['error.text'])]
 
     # df_aerodromos = df_aerodromos[pd.isnull(df_aerodromos.error_text)]
-    
-    df_to_parquet(df_air_cia, 'output/AIR_CIA', 'air_cia')
+    load_list = [
+        [df_air_cia, 'output/AIR_CIA', 'air_cia'],
+        [df_aerodromos, 'output/AERODROMOS', 'aerodromos'],
+        [df_vra, 'output/VRA', 'vra']
+    ]
+    [df_to_parquet(df, dir_path, filename) for df, dir_path, filename in load_list]
 
     print(df_vra)
     print(df_air_cia)
