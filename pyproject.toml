@@ -36,6 +36,8 @@ python main.py
 doc = "mkdocs serve"
 output_test = 'pytest tests/output_test.py -v'
 dashboard = 'streamlit run src/dashboard.py &'
+kill_dashboard = 'kill -9 $(lsof -t -i :8501)'
+kill_doc = 'kill -9 $(lsof -t -i :8000)'
 
 [build-system]
 requires = ["poetry-core"]
