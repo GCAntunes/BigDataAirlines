@@ -41,7 +41,7 @@ async def get_all_dfs_async(icao_code: list) -> list:
         return await asyncio.gather(*futures)
 
 
-def concat_lst_df(icao_code):
+def concat_lst_df(icao_code: list) -> pd.DataFrame:
     lst_dfs = asyncio.get_event_loop().run_until_complete(
         get_all_dfs_async(icao_code)
     )
