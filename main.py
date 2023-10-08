@@ -3,8 +3,8 @@ import asyncio
 import pandas as pd
 
 from src.extract import extract_air_csv, extract_vra_json
-from src.transform import concat_lst_df, get_all_dfs_async, snake_case
 from src.load import df_to_parquet
+from src.transform import concat_lst_df, get_all_dfs_async, snake_case
 
 if __name__ == '__main__':
     df_vra = extract_vra_json('./data/VRA/*.json')
@@ -34,10 +34,9 @@ if __name__ == '__main__':
     load_list = [
         [df_air_cia, 'output/AIR_CIA', 'air_cia'],
         [df_aerodromos, 'output/AERODROMOS', 'aerodromos'],
-        [df_vra, 'output/VRA', 'vra']
+        [df_vra, 'output/VRA', 'vra'],
     ]
-    [df_to_parquet(df, dir_path, filename) for df, dir_path, filename in load_list]
-
-    print(df_vra)
-    print(df_air_cia)
-    print(df_aerodromos)
+    [
+        df_to_parquet(df, dir_path, filename)
+        for df, dir_path, filename in load_list
+    ]
