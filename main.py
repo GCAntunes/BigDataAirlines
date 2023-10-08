@@ -4,6 +4,7 @@ import pandas as pd
 
 from src.extract import extract_air_csv, extract_vra_json
 from src.transform import concat_lst_df, get_all_dfs_async, snake_case
+from src.load import df_to_parquet
 
 if __name__ == '__main__':
     df_vra = extract_vra_json('./data/VRA/*.json')
@@ -26,9 +27,11 @@ if __name__ == '__main__':
         columns={
             column: snake_case(column) for column in df_aerodromos.columns
         }
-    ).loc[pd.isnull(df_aerodromos['error_text'])]
+    ).loc[pd.isnull(df_aerodromos['error.text'])]
 
     # df_aerodromos = df_aerodromos[pd.isnull(df_aerodromos.error_text)]
+    
+    df_to_parquet(df_air_cia, 'output/AIR_CIA', 'air_cia')
 
     print(df_vra)
     print(df_air_cia)
