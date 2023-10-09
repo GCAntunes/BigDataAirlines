@@ -19,6 +19,7 @@ aiohttp = "^3.8.6"
 streamlit = "^1.27.2"
 pip-audit = "^2.6.1"
 mkdocs = "^1.5.3"
+mkdocs-material = "^9.4.4"
 
 [tool.isort]
 profile = "black"
@@ -29,10 +30,9 @@ format = """
 isort .
 blue .
 """
-test = "pytest tests/transform_test.py -v"
-run_staging = """
-python src/staging/pipeline_staging.py
-"""
+test = 'pytest tests/transform_test.py -v'
+run_staging = 'python src/staging/pipeline_staging.py'
+run_analytic = 'python src/analytic/pipeline_analytic.py'
 doc = "mkdocs serve"
 output_test = 'pytest tests/output_test.py -v'
 dashboard = 'streamlit run src/dashboard/dashboard.py &'
