@@ -1,4 +1,4 @@
-# Documentação - BigDataAirlines
+# Página Inicial - BigDataAirlines
 
 O intuito desse repositório é um pequeno estudo de caso utilizando dados de aviação, disponibilizados em diferentes formatos de arquivo, nominalmente json e csv. Além do consumo de uma [API](https://rapidapi.com/Active-api/api/airport-info) a partir dos dados presentes nesses arquivos.
 
@@ -20,11 +20,13 @@ flowchart LR
     .
     vra_n.csv"]
     staging["Camada Staging"]
+    API["API Airport Info"]
+    analytic["Camada Analítica"]
     aircia -- air_cia.parquet --> staging
     vra -- vra.parquet --> staging
-    vra -- icao_code --> API Airport Info
-    API -- aerodromos.parquet -->staging
-    staging -- pipeline analítica -->analytic
+    vra -- icao_code --> API
+    API -- aerodromos.parquet --> staging
+    staging -- pipeline analítica --> analytic
     analytic --> Dashboard
 ```
 
