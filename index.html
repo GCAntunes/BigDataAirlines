@@ -249,19 +249,17 @@
 title: Diagrama da solução LR
 ---
 flowchart LR
-    aircia["`air_cia_1.csv`
+    aircia["air_cia_1.csv
     .
     .
     .
     air_cia_n.csv"]
-    vra["`vra_1.json`
+    vra["vra_1.json
     .
     .
     .
     vra_n.csv"]
-    staging["Camada Staging
-
-    Arquivos salvos em parquet"]
+    staging["`**Camada Staging**`"]
     aircia --&gt; staging
     vra --&gt; staging</code></pre>
 
