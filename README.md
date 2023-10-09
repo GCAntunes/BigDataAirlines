@@ -62,6 +62,7 @@ task test
 ```bash
 task doc
 ```
+VocÊ também pode consultar a documentação [aqui](https://gcantunes.github.io/BigDataAirlines/)
 
 8. Execute a pipeline de staging:
 
