@@ -8,7 +8,7 @@ Na sequência, os dados passam por uma pipeline analítica com os resultados sen
 ---
 title: Diagrama da solução
 ---
-flowchart LR
+flowchart TD
     aircia["air_cia_1.csv
     .
     .
