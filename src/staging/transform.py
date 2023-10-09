@@ -23,6 +23,10 @@ def snake_case(column: str) -> str:
         ).lower()
     )
 
+def separa_icao_iata(df: pd.DataFrame) -> pd.DataFrame:
+    df[['icao', 'iata']] = df['icao_iata'].str.split(pat=' ',n=1, expand=True)
+    return df.drop(columns=['icao_iata'])
+
 
 async def create_aero_df(client, code: str) -> pd.DataFrame:
     url = 'https://airport-info.p.rapidapi.com/airport'
