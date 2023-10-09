@@ -245,17 +245,20 @@
 <h1 id="documentacao-bigdataairlines">Documentação BigDataAirlines</h1>
 <p>O intuito desse repositório é um pequeno estudo de caso utilizando dados de aviação, disponibilizados em diferentes formatos de arquivo, nominalmente json e csv, além do consumo de uma API a partir dos dados presentes nesses arquivos.</p>
 <p>Na sequência, os dados passam por uma pipeline análitica com os resultados sendo apresentados em um Dashboard via streamlit</p>
-<pre class="mermaid"><code>aircia["`air_cia_1.csv`
+<pre class="mermaid"><code>---
+title: Diagrama da solução LR
+---
+    aircia["`air_cia_1.csv`
 .
 .
 .
 air_cia_n.csv"]
-vra["`vra_1.json`
+    vra["`vra_1.json`
 .
 .
 .
 vra_n.csv"]
-staging["Camada Staging
+    staging["Camada Staging
 
 Arquivos salvos em parquet"]
 
