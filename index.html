@@ -281,6 +281,8 @@ flowchart LR
     .
     vra_n.csv"]
     staging["Camada Staging"]
+    API["API Airport Info"]
+    analytic["Camada Analítica"]
     aircia -- air_cia.parquet --&gt; staging
     vra -- vra.parquet --&gt; staging
     vra -- icao_code --&gt; API
