@@ -6,11 +6,11 @@ Esse repositório foi feito para um estudo pontual de ETL, utilizando dados de a
 
 ## Premissas básicas
 
-Esse projeto foi desenvolvido pensando no ambiente Linux, utilizando Poetry para gerenciamento de dependências e o Pyenv para gerenciamento da versão do Python.
+Esse projeto foi desenvolvido pensando utilizando Poetry para gerenciamento de dependências e o Pyenv para gerenciamento da versão do Python.
 
-Além disso, é necessário ter o Git instalado para 
+Para instalação do Pyenv, você pode seguir o manual oficial [aqui](https://github.com/pyenv/pyenv/#installation). Para o Poetry você pode consultar este [material](https://python-poetry.org/docs/#installation)
 
-É utilizado uma API para consultar os dados dos aeródromos. Para utilizar a API é necessário realizar um cadastro no [Rapid API](https://rapidapi.com/) e recuperar sua chave de API, que será utilizada no passo 4. Você pode seguir esse [tutorial](https://docs.rapidapi.com/docs/keys-and-key-rotation) para recuperar sua chave
+Também é utilizado uma API para consultar os dados dos aeródromos. Para utilizar a API é necessário realizar um cadastro no [Rapid API](https://rapidapi.com/) e recuperar sua chave de API, que será utilizada no passo 4. Você pode seguir esse [tutorial](https://docs.rapidapi.com/docs/keys-and-key-rotation) para recuperar sua chave
 
 ### Instalação e Configuração
 
