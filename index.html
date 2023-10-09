@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#bigdataairlines" class="md-skip">
+        <a href="#documentacao-bigdataairlines" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              BigDataAirlines
+              Documentação - BigDataAirlines
             
           </span>
         </div>
@@ -201,7 +201,7 @@
         
   
   <span class="md-ellipsis">
-    BigDataAirlines
+    Documentação - BigDataAirlines
   </span>
   
 
@@ -221,7 +221,7 @@
         
   
   <span class="md-ellipsis">
-    Teste
+    Pipeline Staging
   </span>
   
 
@@ -263,7 +263,7 @@
                   
 
 
-<h1 id="bigdataairlines">BigDataAirlines</h1>
+<h1 id="documentacao-bigdataairlines">Documentação - BigDataAirlines</h1>
 <p>O intuito desse repositório é um pequeno estudo de caso utilizando dados de aviação, disponibilizados em diferentes formatos de arquivo, nominalmente json e csv. Além do consumo de uma <a href="https://rapidapi.com/Active-api/api/airport-info">API</a> a partir dos dados presentes nesses arquivos.</p>
 <p>Na sequência, os dados passam por uma pipeline analítica com os resultados sendo apresentados em um Dashboard via streamlit</p>
 <pre class="mermaid"><code>---
@@ -283,8 +283,10 @@ flowchart LR
     staging["Camada Staging"]
     aircia -- air_cia.parquet --&gt; staging
     vra -- vra.parquet --&gt; staging
-    vra -- icao_code --&gt; API Airport Info
-    API Airport Info -- aerodromos.parquet --&gt; staging</code></pre>
+    vra -- icao_code --&gt; API
+    API -- aerodromos.parquet --&gt; staging
+    staging -- pipeline analítica --&gt; analytic
+    analytic --&gt; Dashboard</code></pre>
 
 
 
