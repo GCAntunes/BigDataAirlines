@@ -41,6 +41,8 @@
       
     
     
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -192,7 +194,7 @@
         
   
   <span class="md-ellipsis">
-    Documentação - BigDataAirlines
+    Página Inicial - BigDataAirlines
   </span>
   
 
@@ -253,8 +255,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#srcstagingextractextract_vra_json" class="md-nav__link">
-    ::: src.staging.extract.extract_vra_json
+  <a href="#src.staging.extract.extract_vra_json" class="md-nav__link">
+    extract_vra_json
   </a>
   
 </li>
@@ -294,8 +296,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#srcstagingextractextract_vra_json" class="md-nav__link">
-    ::: src.staging.extract.extract_vra_json
+  <a href="#src.staging.extract.extract_vra_json" class="md-nav__link">
+    extract_vra_json
   </a>
   
 </li>
@@ -316,7 +318,94 @@
 
 
 <h1 id="pipeline-staging">Pipeline Staging</h1>
-<h3 id="srcstagingextractextract_vra_json">::: src.staging.extract.extract_vra_json</h3>
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="src.staging.extract.extract_vra_json"></a>
+  <div class="doc doc-contents first">
+  
+      <p>Função que lê a pasta de json's de VRA e retorna um único Pandas Dataframe</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>path</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Caminho dos jsons de VRA</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+      <p>Return:
+    df_vra (pd.DataFrame): Dataframe resultante da compilação de todos os jsons</p>
+
+          <details class="quote">
+            <summary>Source code in <code>src/staging/extract.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">extract_vra_json</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Função que lê a pasta de json&#39;s de VRA e retorna um único Pandas Dataframe</span>
+
+<span class="sd">    Params:</span>
+<span class="sd">        path (str): Caminho dos jsons de VRA</span>
+<span class="sd">    Return:</span>
+<span class="sd">        df_vra (pd.DataFrame): Dataframe resultante da compilação de todos os jsons</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">all_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">df_vra</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span>
+        <span class="p">(</span>
+            <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf_8_sig&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">all_files</span>
+        <span class="p">),</span>
+        <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">df_vra</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
 
 
 
