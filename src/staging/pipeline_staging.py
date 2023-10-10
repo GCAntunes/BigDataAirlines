@@ -3,7 +3,7 @@ import asyncio
 import pandas as pd
 from extract import extract_air_csv, extract_vra_json
 from load import df_to_parquet
-from transform import concat_lst_df, get_all_dfs_async, snake_case, separa_icao_iata
+from transform import concat_lst_df, get_all_dfs_async, separa_icao_iata, snake_case
 
 if __name__ == '__main__':
     df_vra = extract_vra_json('./data/VRA/*.json')
@@ -12,9 +12,9 @@ if __name__ == '__main__':
     df_air_cia = df_air_cia.rename(
         columns={column: snake_case(column) for column in df_air_cia.columns}
     )
-    
+
     df_air_cia = separa_icao_iata(df_air_cia)
-    
+
     df_vra = df_vra.rename(
         columns={column: snake_case(column) for column in df_vra.columns}
     )
@@ -26,20 +26,25 @@ if __name__ == '__main__':
     )
 
     df_aerodromos = concat_lst_df(icao_code)
-   
+
     df_aerodromos = df_aerodromos.rename(
         columns={
             column: snake_case(column) for column in df_aerodromos.columns
         }
     ).loc[pd.isnull(df_aerodromos['error.text'])]
-    
-    df_aerodromos['state'] = df_aerodromos['state'].str.replace('State of ', '')
+
+    df_aerodromos['state'] = df_aerodromos['state'].str.replace(
+        'State of ', ''
+    )
     df_aerodromos = df_aerodromos[pd.isnull(df_aerodromos.error_text)]
-    
+
     load_list = [
         [df_air_cia, 'output/AIR_CIA', 'air_cia'],
         [df_aerodromos, 'output/AERODROMOS', 'aerodromos'],
         [df_vra, 'output/VRA', 'vra'],
     ]
-    
-    [df_to_parquet(df, dir_path, filename)for df, dir_path, filename in load_list]
+
+    [
+        df_to_parquet(df, dir_path, filename)
+        for df, dir_path, filename in load_list
+    ]
