@@ -26,13 +26,16 @@ if __name__ == '__main__':
     )
 
     df_aerodromos = concat_lst_df(icao_code)
+    print(df_aerodromos.columns)
     df_aerodromos = df_aerodromos.rename(
         columns={
             column: snake_case(column) for column in df_aerodromos.columns
         }
     ).loc[pd.isnull(df_aerodromos['error.text'])]
-
-    # df_aerodromos = df_aerodromos[pd.isnull(df_aerodromos.error_text)]
+    
+    df_aerodromos['state'] = df_aerodromos['state'].str.replace('State of ', '')
+    df_aerodromos = df_aerodromos[pd.isnull(df_aerodromos.error_text)]
+    
     load_list = [
         [df_air_cia, 'output/AIR_CIA', 'air_cia'],
         [df_aerodromos, 'output/AERODROMOS', 'aerodromos'],
