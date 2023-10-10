@@ -21,6 +21,7 @@ pip-audit = "^2.6.1"
 mkdocs = "^1.5.3"
 mkdocs-material = "^9.4.4"
 mkdocstrings-python = "^1.7.3"
+plotly = "^5.17.0"
 
 [tool.isort]
 profile = "black"
