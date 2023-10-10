@@ -26,7 +26,7 @@ if __name__ == '__main__':
     )
 
     df_aerodromos = concat_lst_df(icao_code)
-    print(df_aerodromos.columns)
+   
     df_aerodromos = df_aerodromos.rename(
         columns={
             column: snake_case(column) for column in df_aerodromos.columns
