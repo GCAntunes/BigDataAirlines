@@ -46,7 +46,7 @@ if __name__ == '__main__':
         'State of ', ''
     )
     df_aerodromos = df_aerodromos[pd.isnull(df_aerodromos.error_text)]
-    progress.update(pipeline_task, advance=24, description= "Salvando os .parquet's")
+    progress.update(pipeline_task, advance=24, description= "Salvando os .parquet's na camada Staging")
     load_list = [
         [df_air_cia, 'output/AIR_CIA', 'air_cia'],
         [df_aerodromos, 'output/AERODROMOS', 'aerodromos'],
