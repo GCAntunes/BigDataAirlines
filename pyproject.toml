@@ -22,6 +22,7 @@ mkdocs = "^1.5.3"
 mkdocs-material = "^9.4.4"
 mkdocstrings-python = "^1.7.3"
 plotly = "^5.17.0"
+rich = "^13.6.0"
 
 [tool.isort]
 profile = "black"
