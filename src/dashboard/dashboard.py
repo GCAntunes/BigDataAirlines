@@ -6,7 +6,7 @@ import streamlit as st
 st.set_page_config(layout='wide')
 
 df_view_cia = pd.read_parquet('output/VIEW_CIA/view_cia.snappy.parquet')
-
+df_ranking_aero_cia = pd.read_parquet('output/RANKING_AERO_CIA/ranking_aero_cia.snappy.parquet')
 # st.dataframe(df_view_cia)
 
 comp_aerea = st.multiselect(
@@ -64,3 +64,15 @@ with placeholder.container():
     )
 
     st.plotly_chart(geo_fig, use_container_width=True)
+    
+    
+    
+    st.dataframe(df_ranking_aero_cia)
+    fig = px.scatter_geo(df_ranking_aero_cia, lat = 'latitude', lon='longitude', 
+                         hover_data={'icao_aerodromo':True, 'total_operacoes':True, 'razao_social':True, 'latitude':False, 'longitude':False}, 
+                         size = 'total_operacoes', 
+                         hover_name = 'name',
+                         width = 1000,
+                         height = 1000,
+                         title = 'Companhia área com mais operações em cada aeroporto')
+    st.plotly_chart(fig, use_container_width=True)
