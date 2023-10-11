@@ -9,7 +9,7 @@ df_view_cia = pd.read_parquet('output/VIEW_CIA/view_cia.snappy.parquet')
 df_ranking_aero_cia = pd.read_parquet('output/RANKING_AERO_CIA/ranking_aero_cia.snappy.parquet')
 # st.dataframe(df_view_cia)
 
-comp_aerea = st.multiselect(
+comp_aerea_1 = st.multiselect(
     label='Filtre por companhia aérea',
     options=df_view_cia['razao_social'],
     default=None,
@@ -18,7 +18,7 @@ comp_aerea = st.multiselect(
 geo_fig = go.Figure(layout={'width': 800, 'height': 800})
 
 df_view_cia_filt = df_view_cia[
-    df_view_cia['razao_social'].isin(comp_aerea)
+    df_view_cia['razao_social'].isin(comp_aerea_1)
 ].reset_index(drop=True)
 
 st.dataframe(df_view_cia_filt)
@@ -43,7 +43,7 @@ with placeholder.container():
                 mode='lines',
                 line=dict(width=1, color='red'),
                 hoverinfo='text',
-                text=f"""Rota: {df_view_cia_filt['rota'][i]}<br>Empresa área: {df_view_cia_filt['razao_social'][i]}<br>Número de viagens: {df_view_cia_filt['count'][i]}"""
+                text=f"""Rota: {df_view_cia_filt['rota'][i]}<br>Empresa área: {df_view_cia_filt['razao_social'][i]}<br>Número de viagens: {df_view_cia_filt['num_viagens'][i]}"""
                 # legend = df_view_cia['rota']
                 # opacity = float(df_view_cia['cnt'][i]) / float(df_view_cia['cnt'].max()),
             )
@@ -65,10 +65,19 @@ with placeholder.container():
 
     st.plotly_chart(geo_fig, use_container_width=True)
     
-    
-    
-    st.dataframe(df_ranking_aero_cia)
-    fig = px.scatter_geo(df_ranking_aero_cia, lat = 'latitude', lon='longitude', 
+comp_aerea_2 = st.multiselect(
+    label='Filtre por companhia aérea',
+    options=df_ranking_aero_cia['razao_social'],
+    default=None,
+)
+df_ranking_aero_cia_filt = df_ranking_aero_cia[df_ranking_aero_cia['razao_social'].isin(comp_aerea_2)]
+st.dataframe(df_ranking_aero_cia_filt)    
+
+placeholder2 = st.empty()
+
+with placeholder2.container():
+    #st.dataframe(df_ranking_aero_cia)
+    fig = px.scatter_geo(df_ranking_aero_cia_filt, lat = 'latitude', lon='longitude', 
                          hover_data={'icao_aerodromo':True, 'total_operacoes':True, 'razao_social':True, 'latitude':False, 'longitude':False}, 
                          size = 'total_operacoes', 
                          hover_name = 'name',
