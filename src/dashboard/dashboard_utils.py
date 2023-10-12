@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-def plota_rotas(df: pd.DataFrame) -> go.Figure():
+def plota_rotas(df: pd.DataFrame) -> go.Figure:
     fig = go.Figure(layout={'width': 800, 'height': 800})
     flight_paths = []
     for i in range(len(df)):
@@ -17,18 +17,24 @@ def plota_rotas(df: pd.DataFrame) -> go.Figure():
                     df['latitude_origem'][i],
                     df['latitude_destino'][i],
                 ],
-                mode='lines',
-                line=dict(width=1, color='red'),
+                mode='lines+markers',
+                line=dict(width=1),                
                 hoverinfo='text',
-                text=f"""Rota: {df['rota'][i]}<br>Empresa área: {df['razao_social'][i]}<br>Número de viagens: {df['num_viagens'][i]}"""
-                # legend = df_view_cia['rota']
+                text=f"""Rota: {df['rota'][i]}
+                <br>Empresa área: {df['razao_social'][i]}
+                <br>Número de viagens: {df['num_viagens'][i]}
+                <br>Estado origem: {df['estado_uf_origem'][i]}
+                <br>Estado destino: {df['estado_uf_destino'][i]}""",
+                name = df['rota'][i]
                 # opacity = float(df_view_cia['cnt'][i]) / float(df_view_cia['cnt'].max()),
             )
         )
     fig.update_geos(lataxis_showgrid=True, lonaxis_showgrid=True)
     fig.update_layout(
-        title_text='Principal rota de cada Companhia Aérea',
-        showlegend=False,
+        #title_text='Principal rota de cada Companhia Aérea',
+        legend_title_text = 'Rota',
+        showlegend=True,
+        
         geo=dict(
             scope='world',
             projection_type='azimuthal equal area',
@@ -40,4 +46,13 @@ def plota_rotas(df: pd.DataFrame) -> go.Figure():
         ),
     )
     return fig
-    
+
+def plota_aeroportos(df: pd.DataFrame) -> go.Figure:
+    fig = px.scatter_geo(df, lat = 'latitude', lon='longitude', 
+                         hover_data={'icao_aerodromo':True, 'total_operacoes':True, 'razao_social':True, 'latitude':False, 'longitude':False}, 
+                         size = 'total_operacoes', 
+                         hover_name = 'name',
+                         color_discrete_sequence= px.colors.qualitative.Plotly,
+                         width = 1000,
+                         height = 1000)
+    return fig   
