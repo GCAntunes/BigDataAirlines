@@ -18,7 +18,7 @@ def plota_rotas(df: pd.DataFrame) -> go.Figure:
                     df['latitude_destino'][i],
                 ],
                 mode='lines+markers',
-                line=dict(width=1),                
+                line=dict(width=1.2),                
                 hoverinfo='text',
                 text=f"""Rota: {df['rota'][i]}
                 <br>Empresa área: {df['razao_social'][i]}
@@ -50,7 +50,8 @@ def plota_rotas(df: pd.DataFrame) -> go.Figure:
 def plota_aeroportos(df: pd.DataFrame) -> go.Figure:
     fig2 = px.scatter_geo(df, lat = 'latitude', lon='longitude', 
                          hover_data={'icao_aerodromo':True, 'total_operacoes':True, 'razao_social':True, 'latitude':False, 'longitude':False}, 
-                         size = 'total_operacoes', 
+                         size ='total_operacoes_normalizado',
+                         color = 'razao_social', 
                          hover_name = 'name',
                          color = 'razao_social',
                          #labels = 'razao_social',
