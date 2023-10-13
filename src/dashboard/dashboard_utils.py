@@ -52,10 +52,9 @@ def plota_aeroportos(df: pd.DataFrame) -> go.Figure:
                          hover_data={'icao_aerodromo':True, 'total_operacoes':True, 'razao_social':True, 'latitude':False, 'longitude':False}, 
                          size ='total_operacoes_normalizado',
                          color = 'razao_social', 
-                         hover_name = 'name',
-                         color = 'razao_social',
+                         hover_name = 'name',                         
                          #labels = 'razao_social',
-                         #color_discrete_sequence= px.colors.qualitative.Light24,
+                         color_discrete_sequence= px.colors.qualitative.Light24,
                          width = 800,
                          height = 800)
     fig2.update_layout(legend_title_text='Companhia Aérea',showlegend=True)
