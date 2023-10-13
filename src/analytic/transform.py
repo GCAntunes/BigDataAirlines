@@ -66,11 +66,6 @@ def view_aero(df_air_cia: pd.DataFrame, df_vra: pd.DataFrame, df_aerodromos:pd.D
                                                  .query("rank == 1")
                                                  .merge(df_lat_lon, 'inner', left_on='icao_aerodromo', right_on='icao')
                                                  .drop(columns = 'rank')
-                                                 )
-                                                                                                         
+                                                 )                                                                                               
        
-       
-       
-       return df_ranking_aero_cia
-       
-       
+       return df_ranking_aero_cia     
