@@ -10,6 +10,8 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
 
+repo_url: https://github.com/GCAntunes/BigDataAirlines
+
 plugins:
   - search
   - mkdocstrings:
