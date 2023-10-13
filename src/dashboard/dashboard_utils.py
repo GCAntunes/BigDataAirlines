@@ -49,7 +49,7 @@ def plota_rotas(df: pd.DataFrame) -> go.Figure:
 
 def plota_aeroportos(df: pd.DataFrame) -> go.Figure:
     fig2 = px.scatter_geo(df, lat = 'latitude', lon='longitude', 
-                         hover_data={'icao_aerodromo':True, 'total_operacoes':True, 'razao_social':True, 'latitude':False, 'longitude':False}, 
+                         hover_data={'icao_aerodromo':True, 'total_operacoes':True, 'razao_social':True, 'latitude':False, 'longitude':False, 'total_operacoes_normalizado': False}, 
                          size ='total_operacoes_normalizado',
                          color = 'razao_social', 
                          hover_name = 'name',                         

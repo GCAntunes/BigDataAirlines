@@ -32,6 +32,6 @@ st.dataframe(df_ranking_aero_cia_filt)
 placeholder2 = st.empty()
 
 with placeholder2.container():
-    st.header('Principais rotas de cada companhia aérea.')
+    st.header('Companhia áera com mais operaçoes em cada aeroporto')
     fig_aeroportos = plota_aeroportos(df_ranking_aero_cia_filt)
     st.plotly_chart(fig_aeroportos, use_container_width=True)
