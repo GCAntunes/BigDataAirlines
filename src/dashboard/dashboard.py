@@ -29,12 +29,6 @@ comp_aerea_2 = st.multiselect(label='Filtre por companhia aérea', options=df_ra
 df_ranking_aero_cia_filt = df_ranking_aero_cia[df_ranking_aero_cia['razao_social'].isin(comp_aerea_2)]
 st.dataframe(df_ranking_aero_cia_filt)    
 
-buf = io.StringIO()
-df_ranking_aero_cia.info(buf=buf)
-s = buf.getvalue()
-
-st.text(s)
-
 placeholder2 = st.empty()
 
 with placeholder2.container():

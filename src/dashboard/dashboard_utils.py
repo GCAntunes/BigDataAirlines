@@ -18,7 +18,7 @@ def plota_rotas(df: pd.DataFrame) -> go.Figure:
                     df['latitude_destino'][i],
                 ],
                 mode='lines+markers',
-                line=dict(width=abs(df['num_viagens_normalizado'][i]*3)),                
+                line=dict(width=1.2),                
                 hoverinfo='text',
                 text=f"""Rota: {df['rota'][i]}
                 <br>Empresa área: {df['razao_social'][i]}
@@ -54,6 +54,6 @@ def plota_aeroportos(df: pd.DataFrame) -> go.Figure:
                          color = 'razao_social', 
                          hover_name = 'name',
                          color_discrete_sequence= px.colors.qualitative.Plotly,
-                         width = 1000,
-                         height = 1000)
+                         width = 800,
+                         height = 800)
     return fig   
