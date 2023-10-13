@@ -48,11 +48,14 @@ def plota_rotas(df: pd.DataFrame) -> go.Figure:
     return fig
 
 def plota_aeroportos(df: pd.DataFrame) -> go.Figure:
-    fig = px.scatter_geo(df, lat = 'latitude', lon='longitude', 
+    fig2 = px.scatter_geo(df, lat = 'latitude', lon='longitude', 
                          hover_data={'icao_aerodromo':True, 'total_operacoes':True, 'razao_social':True, 'latitude':False, 'longitude':False}, 
                          size = 'total_operacoes', 
                          hover_name = 'name',
-                         color_discrete_sequence= px.colors.qualitative.Plotly,
-                         width = 1000,
-                         height = 1000)
-    return fig   
+                         color = 'razao_social',
+                         #labels = 'razao_social',
+                         #color_discrete_sequence= px.colors.qualitative.Light24,
+                         width = 800,
+                         height = 800)
+    fig2.update_layout(legend_title_text='Companhia Aérea',showlegend=True)
+    return fig2   
