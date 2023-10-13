@@ -21,7 +21,8 @@ def view_cia(df_air_cia: pd.DataFrame, df_vra: pd.DataFrame, df_aerodromos:pd.Da
                                 )
         
     df_ranking_cia = (df_ranking_cia.assign(rank =df_ranking_cia.groupby('razao_social')['count'].rank(method='first', ascending=False),
-                                            rota = df_ranking_cia['aeroporto_origem'].str.cat(df_ranking_cia['aeroporto_destino'], '-'))
+                                            rota = df_ranking_cia['aeroporto_origem'].str.cat(df_ranking_cia['aeroporto_destino'], '-'),
+                                            num_viagens_normalizado = (df_ranking_cia['count'] - df_ranking_cia['count'].mean())/(df_ranking_cia['count'].std()))
                                      .query("rank == 1")
                                      .reset_index(drop = True)
                                      .drop(columns='rank')
@@ -60,7 +61,8 @@ def view_aero(df_air_cia: pd.DataFrame, df_vra: pd.DataFrame, df_aerodromos:pd.D
                                            .rename(columns = {'icao_aerodromo_origem': 'icao_aerodromo'}))
        
        df_ranking_aero_cia = df_ranking_aero_cia.assign(total_operacoes = df_ranking_aero_cia.num_decolagens +df_ranking_aero_cia.num_pousos)
-       df_ranking_aero_cia = (df_ranking_aero_cia.assign(rank = df_ranking_aero_cia.groupby('name')['total_operacoes'].rank('first', ascending = False))
+       df_ranking_aero_cia = (df_ranking_aero_cia.assign(rank = df_ranking_aero_cia.groupby('name')['total_operacoes'].rank('first', ascending = False),
+                                                         total_operacoes_normalizado = abs((df_ranking_aero_cia['total_operacoes'] - df_ranking_aero_cia['total_operacoes'].mean())/(df_ranking_aero_cia['total_operacoes'].std())))
                                                  .query("rank == 1")
                                                  .merge(df_lat_lon, 'inner', left_on='icao_aerodromo', right_on='icao')
                                                  .drop(columns = 'rank')
