@@ -21,7 +21,8 @@ def view_cia(df_air_cia: pd.DataFrame, df_vra: pd.DataFrame, df_aerodromos:pd.Da
                                 )
         
     df_ranking_cia = (df_ranking_cia.assign(rank =df_ranking_cia.groupby('razao_social')['count'].rank(method='first', ascending=False),
-                                            rota = df_ranking_cia['aeroporto_origem'].str.cat(df_ranking_cia['aeroporto_destino'], '-'))
+                                            rota = df_ranking_cia['aeroporto_origem'].str.cat(df_ranking_cia['aeroporto_destino'], '-'),
+                                            num_viagens_normalizado = (df_ranking_cia['count'] - df_ranking_cia['count'].mean())/(df_ranking_cia['count'].std()))
                                      .query("rank == 1")
                                      .reset_index(drop = True)
                                      .drop(columns='rank')

@@ -18,7 +18,7 @@ def plota_rotas(df: pd.DataFrame) -> go.Figure:
                     df['latitude_destino'][i],
                 ],
                 mode='lines+markers',
-                line=dict(width=1),                
+                line=dict(width=abs(df['num_viagens_normalizado'][i]*3)),                
                 hoverinfo='text',
                 text=f"""Rota: {df['rota'][i]}
                 <br>Empresa área: {df['razao_social'][i]}
