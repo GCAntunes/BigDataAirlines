@@ -45,44 +45,44 @@ export API_KEY=SUA_CHAVE_DO_RAPID_API
 poetry install
 ```
 
-5. Ative o ambiente virtual:
+6. Ative o ambiente virtual:
 
 ```bash
 poetry shell
 ```
 
-6. Realize os testes para garantir o funcionamento da pipeline:
+7. Realize os testes para garantir o funcionamento da pipeline:
 
 ```bash
 task test
 ```
 
-7. Execute o seguinte comando para ver a documentação do projeto:
+8. Execute o seguinte comando para ver a documentação do projeto:
 
 ```bash
 task doc
 ```
 Você também pode consultar a documentação [aqui](https://gcantunes.github.io/BigDataAirlines/)
 
-8. Execute a pipeline de staging:
+9. Execute a pipeline de staging:
 
 ```bash
 task run_staging
 ```
 
-9. Verifique se o arquivo foi gerado corretamente:
+10. Verifique se o arquivo foi gerado corretamente:
 
 ```bash
 task output_test
 ```
 
-10. Execute a pipeline analítica:
+11. Execute a pipeline analítica:
 
 ```bash
 task run_analytic
 ```
 
-11. Veja os resultados em um dashboard:
+12. Veja os resultados em um dashboard:
 
 ```bash
 task dashboard
